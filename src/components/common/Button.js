@@ -48,7 +48,7 @@ const Button = ({ to, cyan, ...rest }) => {
   return to ? (
     <StyledLink to={to} {...rest} cyan={cyan ? 1 : 0} />
   ) : (
-    <StyledButton {...rest} />
+    <StyledButton {...rest} cyan={cyan} />
   );
 };
 
