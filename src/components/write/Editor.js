@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useRef, useEffect } from 'react';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 
@@ -27,6 +28,13 @@ const Editor = ({ title, body, onChangeField }) => {
   const onChangeTitle = e => {
     onChangeField({ key: 'title', value: e.target.value });
   };
+
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    onChangeField({ key: 'body', value: body });
+  }, [body, onChangeField]);
 
   return (
     <EditorBlock>
